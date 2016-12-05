@@ -17,5 +17,9 @@
     "gulp-util": "^3.0.7",
     "lodash.assign": "^4.2.0",
     "through2": "^2.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zzyss86/gulp-hash-list.git"
   }
 }
