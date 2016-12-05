@@ -1,6 +1,6 @@
 {
   "name": "gulp-hash-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates file hash to the JSON manifest file and generates new file name",
   "main": "index.js",
   "scripts": {
