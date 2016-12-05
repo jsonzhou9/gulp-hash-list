@@ -1,5 +1,6 @@
 Generates file hash to the JSON manifest file and generates new file name.
 
+- Alose via: [gulp-asset-revision](https://github.com/zzyss86/gulp-asset-revision)
 - Author: JsonZhou
 - Author Blog: [http://www.2fz1.com/](http://www.2fz1.com/)
 
