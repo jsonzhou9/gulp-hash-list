@@ -24,7 +24,7 @@ var hashListObj = function(options){
     }, options);
 
     return through2.obj(function(file, encoding, done) {
-        if (file.isDirectory()) {
+        if (file.isDirectory() || file.isNull()) {
             done(null, file);
             return;
         }
