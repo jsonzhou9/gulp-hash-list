@@ -24,7 +24,7 @@ var hashListObj = function(options){
     }, options);
 
     return through2.obj(function(file, encoding, done) {
-        if (file.isDirectory() || file.isNull()) {
+        if (file.isDirectory()) {
             done(null, file);
             return;
         }
@@ -32,6 +32,8 @@ var hashListObj = function(options){
         var fileExt = path.extname(file.relative),
             fileName = path.basename(file.relative, fileExt),
             dir = path.dirname(file.path);
+
+        file.origFilename = path.basename(file.relative);
 
         //template data
         var params = {
@@ -48,15 +50,13 @@ var hashListObj = function(options){
         if(options.template.endsWith('{ext}')){
             file.path = path.join(dir, fileName);
             file.hashFilename = path.basename(file.path);
-            file.origFilename = path.basename(file.relative);
         }else if(options.template.indexOf('{ext}')>0){ //must start 1
             var fileRealNameTemplate = options.template.substring(0,options.template.indexOf('{ext}')+5);
-            file.origFilename = path.basename(file.relative); //must before set file path
             file.path = path.join(dir, formatStr(fileRealNameTemplate, params));
             file.hashFilename = path.basename(fileName);
         }else{
             var err = new gutil.PluginError(PluginName, {
-              message: 'template must have {ext}'
+                message: 'template must have {ext}'
             });
             done(err,file);
             return;
@@ -71,9 +71,9 @@ hashListObj.manifest = function(manifestPath){
 
     return through2.obj(function(file, encoding, done) {
         if (typeof file.origFilename !== 'undefined') {
-            var manifestSrc = formatManifestPath(path.join(path.dirname(file.relative), file.origFilename));
-            var manifestDest = formatManifestPath(path.join(path.dirname(file.relative), file.hashFilename));
-            manifest[manifestSrc] = manifestDest;
+            var srcPath = formatManifestPath(path.join(path.dirname(file.relative), file.origFilename));
+            var distPath = formatManifestPath(path.join(path.dirname(file.relative), file.hashFilename));
+            manifest[srcPath] = distPath;
         }
 
         done();
