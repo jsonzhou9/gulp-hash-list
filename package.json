@@ -1,6 +1,6 @@
 {
   "name": "gulp-hash-list",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Generates file hash to the JSON manifest file and generates new file name",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   ],
   "author": "jsonzhou",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "gulp-util": "^3.0.7",
     "lodash.assign": "^4.2.0",
     "through2": "^2.0.3"
